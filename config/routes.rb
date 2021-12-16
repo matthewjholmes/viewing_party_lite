@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 get '/users/:user_id', to: 'users#show', as: 'dashboard'
 
-resources :users, only: :create do
+resources :users, only: [:create, :show, :new] do
   resources :discover, only: :index
   resources :movies, only: [:index, :show] do
     resources :parties, only: [:create, :new]
