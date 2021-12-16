@@ -11,6 +11,8 @@ RSpec.describe 'user register form' do
     visit register_path
     fill_in 'Name', with: 'User 1'
     fill_in 'Email', with: 'user@email.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password Confirmation', with: 'password'
     click_button 'Create User'
 
     user = User.last
