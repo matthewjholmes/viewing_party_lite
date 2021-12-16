@@ -10,7 +10,7 @@ RSpec.describe 'Log In Form' do
     click_button
 
     @user = User.last
-    # @user2 = User.create!(name: 'User 2', email: 'user@user.com', password: 'password', password_confirmation: 'password')
+    # @user = User.create!(name: 'User 2', email: 'user2@user.com', password: 'password', password_confirmation: 'password')
   end
 
   it 'can log in a user' do
@@ -21,6 +21,15 @@ RSpec.describe 'Log In Form' do
 
     expect(current_path).to eq(user_path(@user))
   end
+
+  # it 'can log in a second user' do
+  #   visit login_path
+  #   fill_in :email, with: @user.email
+  #   fill_in :password, with: 'password'
+  #   click_button
+  #
+  #   expect(current_path).to eq(user_path(@user2))
+  # end
 
   it 'handles incorrect password' do
     visit login_path
