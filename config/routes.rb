@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 get '/users/:user_id', to: 'users#show', as: 'dashboard'
 
-resources :users, only: :create do
+resources :users, only: [:create, :show, :new] do
   resources :discover, only: :index
   resources :movies, only: [:index, :show] do
     resources :parties, only: [:create, :new]
@@ -12,6 +12,8 @@ end
 
 post "/users/:user_id/movies/:movie_id/parties/new", to: "parties#create", as: 'new_party'
 
+get '/login', to: 'users#login_form'
+post '/login', to: 'users#login_user'
 
 get '/register', to: 'users#new', as: 'register'
 
