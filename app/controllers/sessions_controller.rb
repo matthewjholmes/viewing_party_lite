@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     if user
       if user.authenticate(params[:password])
+        session[:user_id] = user.id
         redirect_to user_path(user)
       else
         flash[:alert] = 'Invalid password'
@@ -18,7 +19,11 @@ class SessionsController < ApplicationController
       redirect_to '/login'
     end
   end
-  # 
+
+  def destroy
+    session.destroy
+    redirect_to root_path
+  end
   # private
   #
   # def user_params

@@ -26,7 +26,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
+    if session[:user_id]
+      @user = UserFacade.new(User.find(params[:user_id]))
+    else
+      handle_restrictions
+    end
   end
 
   def login_form

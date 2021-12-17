@@ -14,6 +14,7 @@ post "/users/:user_id/movies/:movie_id/parties/new", to: "parties#create", as: '
 
 get '/login', to: 'sessions#new'
 post '/login', to: 'sessions#create'
+delete '/login', to: 'sessions#destroy'
 
 get '/register', to: 'users#new', as: 'register'
 

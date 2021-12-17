@@ -1,9 +1,12 @@
 class PartiesController < ApplicationController
   def new
-      require "pry"; binding.pry
-    @user = User.find(params[:user_id])
-    @movie = MovieFacade.movie_details(params[:movie_id])
-    @users = User.all
+    if session[:user_id]
+      @user = User.find(params[:user_id])
+      @movie = MovieFacade.movie_details(params[:movie_id])
+      @users = User.all
+    else
+      handle_restrictions
+    end
   end
 
   def create
