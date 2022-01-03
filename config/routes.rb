@@ -20,4 +20,6 @@ get '/register', to: 'users#new', as: 'register'
 
 root to: "landing#index"
 
+post 'twilio/voice' => 'twilio#voice'
+
 end
