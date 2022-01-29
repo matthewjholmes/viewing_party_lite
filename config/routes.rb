@@ -12,11 +12,14 @@ end
 
 post "/users/:user_id/movies/:movie_id/parties/new", to: "parties#create", as: 'new_party'
 
-get '/login', to: 'users#login_form'
-post '/login', to: 'users#login_user'
+get '/login', to: 'sessions#new'
+post '/login', to: 'sessions#create'
+delete '/login', to: 'sessions#destroy'
 
 get '/register', to: 'users#new', as: 'register'
 
 root to: "landing#index"
+
+post 'twilio/voice' => 'twilio#voice'
 
 end

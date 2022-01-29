@@ -13,12 +13,24 @@ class UsersController < ApplicationController
     #   flash[:alert] = "Could not create user. Please try again."
     #   redirect_to register_path
     # end
-    user = User.create!(user_params)
-    redirect_to user_path(user)
+    # user = User.create!(user_params)
+    # redirect_to user_path(user)
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to dashboard_path(user)
+      flash[:notice] = "Welcome #{user.name}"
+    else
+
+
   end
 
   def show
-    @user = User.find(params[:user_id])
+    if session[:user_id]
+      @user = UserFacade.new(User.find(params[:user_id]))
+    else
+      handle_restrictions
+    end
   end
 
   def login_form

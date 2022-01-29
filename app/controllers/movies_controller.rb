@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :handle_restrictions
+
   def index
     @user = User.find(params[:user_id])
     if (params[:q] == "top_rated")
@@ -11,11 +13,9 @@ class MoviesController < ApplicationController
   end
 
   def show
-
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @movie = MovieFacade.movie_details(params[:id])
     @cast = MovieFacade.cast(params[:id]).take(10)
     @reviews = MovieFacade.reviews(params[:id])
-
   end
 end

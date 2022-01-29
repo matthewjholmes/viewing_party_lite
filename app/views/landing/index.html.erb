@@ -2,10 +2,16 @@
 <%= button_to "Login", "/login", method: :get %>
 
 <section>
-  <h2>Existing Users:</h2>
-  <% @users.each do |user| %>
-    <p>
-    <%= link_to "#{user.email}'s Dashboard", "/users/#{user.id}" %>
-    </p>
+  <div id="counter">
+
+  </div>
+
+  <% if session[:user_id] %>
+    <h2>Existing Users:</h2>
+    <% @users.each do |user| %>
+      <p>
+      <%= link_to "#{user.email}'s Dashboard", "/users/#{user.id}" %>
+      </p>
+    <% end %>
   <% end %>
 </section>
